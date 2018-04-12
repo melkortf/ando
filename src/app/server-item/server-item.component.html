@@ -1,0 +1,21 @@
+<li class="list-group-item d-flex justify-content-between align-items-center">
+  <ul class="list-inline">
+    <li class="list-inline-item">{{ server.name }}</li>
+    <li class="list-inline-item" *ngIf="server.state === 'Running'">
+      <span  class="server-status">
+        {{ server.map }} {{ server.playerCount }}/{{ server.maxPlayers }}
+      </span>
+    </li>
+  </ul>
+  <span class="badge"
+    [ngClass]="{
+      'badge-secondary': server.state === 'Offline',
+      'badge-success': server.state === 'Running',
+      'badge-light': server.state === 'Starting',
+      'badge-dark': server.state === 'ShuttingDown',
+      'badge-danger': server.state === 'Crashed'
+    }"
+  >
+    {{ server.state }}
+  </span>
+</li>

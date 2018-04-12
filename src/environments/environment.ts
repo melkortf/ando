@@ -4,5 +4,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  // where the morgoth RESTful API is running
+  morgothDomain: 'http://localhost:3000',
 };

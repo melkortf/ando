@@ -1,16 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
 import { AppComponent } from './app.component';
+import { ServerListComponent } from './server-list/server-list.component';
+import { ServerItemComponent } from './server-item/server-item.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MorgothModule } from './morgoth/morgoth.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ServerListComponent,
+    ServerItemComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MorgothModule
   ],
   providers: [],
   bootstrap: [AppComponent]
