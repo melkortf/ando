@@ -19,6 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "ando",
       "styles": [
+        "material-icons.css",
         "styles.css"
       ],
       "scripts": [],
