@@ -11,6 +11,7 @@ import { ServerInfo } from '../morgoth/models/server-info';
 export class ServerListComponent implements OnInit {
 
   servers: ServerInfo[];
+  error;
 
   constructor(
     private morgoth: MorgothService
@@ -22,7 +23,10 @@ export class ServerListComponent implements OnInit {
 
   getServers() {
     this.morgoth.getServers()
-      .subscribe(servers => this.servers = servers);
+      .subscribe(
+        servers => this.servers = servers,
+        error => this.error = error
+      );
   }
 
 }

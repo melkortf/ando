@@ -1,5 +1,5 @@
 import { Injectable, InjectionToken, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ServerInfo } from './models/server-info';
 import { Observable } from 'rxjs/Observable';
 
@@ -18,7 +18,18 @@ export class MorgothService {
   }
 
   getServers(): Observable<ServerInfo[]> {
-    return this.http.get<ServerInfo[]>(this.serversEndpoint);
+    return Observable.create((observer) => {
+      this.http.get<ServerInfo[]>(this.serversEndpoint).subscribe(
+        servers => { observer.next(servers); },
+        (error: HttpErrorResponse) => {
+          if (error.error instanceof Error) {
+            observer.error(error.error.message);
+          } else {
+            observer.error(`${error.status}: ${error.statusText}`);
+          }
+        }
+      );
+    });
   }
 
 }
