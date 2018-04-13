@@ -7,10 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     HttpClientModule,
   ],
-  exports: [
-    MorgothService,
-  ],
   providers: [
+    MorgothService,
     {
       provide: MORGOTH_DOMAIN,
       useValue: environment.morgothDomain
