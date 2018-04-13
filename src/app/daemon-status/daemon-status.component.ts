@@ -9,6 +9,7 @@ import { MorgothService } from '../morgoth/morgoth.service';
 export class DaemonStatusComponent implements OnInit {
 
   status: string;
+  icon = 'info';
 
   constructor(
     private morgoth: MorgothService
@@ -17,7 +18,7 @@ export class DaemonStatusComponent implements OnInit {
   ngOnInit() {
     this.morgoth.getInfo().subscribe(
       info => this.status = 'morgoth daemon version ' + info.version,
-      error => this.status = 'offline'
+      error => { this.status = 'offline'; this.icon = 'error'; }
     );
   }
 
