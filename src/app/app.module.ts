@@ -6,6 +6,7 @@ import { ServerItemComponent } from './server-item/server-item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MorgothModule } from './morgoth/morgoth.module';
 import { SharedModule } from './shared/shared.module';
+import { DaemonStatusComponent } from './daemon-status/daemon-status.component';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { SharedModule } from './shared/shared.module';
     AppComponent,
     ServerListComponent,
     ServerItemComponent,
+    DaemonStatusComponent,
   ],
   imports: [
     BrowserModule,
