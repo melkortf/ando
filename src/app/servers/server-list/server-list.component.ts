@@ -8,25 +8,14 @@ import { ServerInfo } from '../../morgoth/models/server-info';
   styleUrls: ['./server-list.component.css'],
   providers: [MorgothService]
 })
-export class ServerListComponent implements OnInit {
+export class ServerListComponent {
 
-  servers: ServerInfo[];
+  servers;
   error;
 
   constructor(
     private morgoth: MorgothService
-  ) { }
-
-  ngOnInit() {
-    this.getServers();
+  ) {
+    this.servers = this.morgoth.getServers();
   }
-
-  getServers() {
-    this.morgoth.getServers()
-      .subscribe(
-        servers => this.servers = servers,
-        error => this.error = error
-      );
-  }
-
 }

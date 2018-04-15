@@ -1,6 +1,6 @@
 <ul class="list-group list-group-flush">
   <ando-server-item
-    *ngFor="let s of servers"
+    *ngFor="let s of servers | async"
     [server]="s">
   </ando-server-item>
 </ul>
