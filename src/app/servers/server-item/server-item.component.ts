@@ -27,6 +27,9 @@ export class ServerItemComponent {
 
       case 'Crashed':
         return 'crashed';
+
+      default:
+        return state;
     }
   }
 
