@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MorgothService } from '../morgoth/morgoth.service';
-import { ServerInfo } from '../morgoth/models/server-info';
+import { MorgothService } from '../../morgoth/morgoth.service';
+import { ServerInfo } from '../../morgoth/models/server-info';
 
 @Component({
   selector: 'ando-server-list',

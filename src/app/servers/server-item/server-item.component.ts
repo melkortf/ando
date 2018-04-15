@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ServerInfo } from '../morgoth/models/server-info';
+import { ServerInfo } from '../../morgoth/models/server-info';
 
 @Component({
   selector: 'ando-server-item',
