@@ -1,14 +1,6 @@
 <ul class="list-group list-group-flush">
   <ando-server-item
-    *ngFor="let s of servers"
+    *ngFor="let s of servers | async"
     [server]="s">
   </ando-server-item>
 </ul>
-
-<div
-  *ngIf="servers.length == 0"
-  class="alert alert-light" role="alert">
-    No servers installed.
-</div>
-
-<ando-error-alert [message]="error"></ando-error-alert>

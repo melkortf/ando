@@ -8,11 +8,13 @@ import { DaemonStatusComponent } from './daemon-status/daemon-status.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { ServersModule } from './servers/servers.module';
+import { MorgothErrorAlertComponent } from './morgoth-error-alert/morgoth-error-alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DaemonStatusComponent,
+    MorgothErrorAlertComponent,
   ],
   imports: [
     BrowserModule,
