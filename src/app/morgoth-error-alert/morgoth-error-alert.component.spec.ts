@@ -1,6 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { MorgothErrorAlertComponent } from './morgoth-error-alert.component';
+import { MorgothService } from '../morgoth/morgoth.service';
+import { MorgothTestingService } from '../morgoth/testing';
+import { SharedModule } from '../shared/shared.module';
 
 describe('MorgothErrorAlertComponent', () => {
   let component: MorgothErrorAlertComponent;
@@ -8,7 +10,14 @@ describe('MorgothErrorAlertComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MorgothErrorAlertComponent ]
+      declarations: [ MorgothErrorAlertComponent ],
+      imports: [ SharedModule ],
+      providers: [
+        {
+          provide: MorgothService,
+          useClass: MorgothTestingService
+        }
+      ]
     })
     .compileComponents();
   }));
@@ -19,7 +28,7 @@ describe('MorgothErrorAlertComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create', inject([MorgothService], (service: MorgothTestingService) => {
     expect(component).toBeTruthy();
-  });
+  }));
 });
