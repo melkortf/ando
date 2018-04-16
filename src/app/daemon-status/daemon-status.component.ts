@@ -9,16 +9,21 @@ import { MorgothService } from '../morgoth/morgoth.service';
 export class DaemonStatusComponent implements OnInit {
 
   status: string;
-  icon = 'info';
+  icon: 'info' | 'error';
 
   constructor(
     private morgoth: MorgothService
-  ) { }
+  ) {
+    this.icon = 'info';
+  }
 
   ngOnInit() {
+    this.morgoth.getError().subscribe(
+      error => { this.status = 'morgoth daemon unavailable'; this.icon = 'error'; }
+    );
+
     this.morgoth.getInfo().subscribe(
-      info => this.status = 'morgoth daemon version ' + info.version,
-      error => { this.status = 'offline'; this.icon = 'error'; }
+      info => this.status = 'morgoth daemon version ' + info.version
     );
   }
 

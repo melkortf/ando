@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MorgothService } from '../../morgoth/morgoth.service';
 import { ServerInfo } from '../../morgoth/models/server-info';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'ando-server-list',
@@ -10,8 +11,7 @@ import { ServerInfo } from '../../morgoth/models/server-info';
 })
 export class ServerListComponent {
 
-  servers;
-  error;
+  servers: Observable<ServerInfo[]>;
 
   constructor(
     private morgoth: MorgothService

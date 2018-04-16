@@ -16,6 +16,7 @@ export class MorgothService {
 
   info: ReplaySubject<DaemonInfo>;
   servers: ReplaySubject<ServerInfo[]>;
+  error: ReplaySubject<string>;
   ioSocket;
 
   constructor(
@@ -24,11 +25,13 @@ export class MorgothService {
   ) {
     this.info = new ReplaySubject<DaemonInfo>(1);
     this.servers = new ReplaySubject<ServerInfo[]>(1);
+    this.error = new ReplaySubject<string>(1);
 
     this.ioSocket = socketIo(`${this.morgothUrl}/`);
 
     this.http.get<DaemonInfo>(`${this.morgothUrl}/`).subscribe(
       info => this.info.next(info),
+      error => this.handleError(error),
     );
 
     this.http.get<ServerInfo[]>(`${this.morgothUrl}/servers`).subscribe(
@@ -52,10 +55,14 @@ export class MorgothService {
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof Error) {
-      return new ErrorObservable(error.error.message);
+      this.error.next(error.error.message);
     } else {
-      return new ErrorObservable(`${error.status}: ${error.statusText}`);
+      this.error.next(`${error.status}: ${error.statusText}`);
     }
+  }
+
+  getError(): Observable<string> {
+    return this.error.asObservable();
   }
 
   getInfo(): Observable<DaemonInfo> {
