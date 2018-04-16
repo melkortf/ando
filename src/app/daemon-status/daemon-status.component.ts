@@ -15,6 +15,7 @@ export class DaemonStatusComponent implements OnInit {
     private morgoth: MorgothService
   ) {
     this.icon = 'info';
+    this.status = '';
   }
 
   ngOnInit() {
