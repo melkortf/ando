@@ -1,6 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { ServerListComponent } from './server-list.component';
+import { ServerItemComponent } from '../server-item/server-item.component';
+import { MorgothService } from '../../morgoth/morgoth.service';
+import { MorgothTestingService } from '../../morgoth/testing';
+import { MorgothModule } from '../../morgoth/morgoth.module';
 
 describe('ServerListComponent', () => {
   let component: ServerListComponent;
@@ -8,7 +11,19 @@ describe('ServerListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ServerListComponent ]
+      imports: [
+        MorgothModule,
+      ],
+      declarations: [
+        ServerItemComponent,
+        ServerListComponent
+      ],
+      providers: [
+        {
+          provide: MorgothService,
+          useClass: MorgothTestingService
+        }
+      ]
     })
     .compileComponents();
   }));
@@ -19,7 +34,7 @@ describe('ServerListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create', inject([MorgothService], (service: MorgothTestingService) => {
     expect(component).toBeTruthy();
-  });
+  }));
 });

@@ -1,6 +1,10 @@
-<ul class="list-group list-group-flush">
-  <ando-server-item
-    *ngFor="let s of servers | async"
-    [server]="s">
-  </ando-server-item>
+<ul *ngIf="servers | async as _servers"
+  class="list-group list-group-flush">
+  <ng-container *ngIf="_servers.length; else noServers">
+    <ando-server-item
+      *ngFor="let s of _servers"
+      [server]="s">
+    </ando-server-item>
+  </ng-container>
+  <ng-template #noServers>No servers installed.</ng-template>
 </ul>

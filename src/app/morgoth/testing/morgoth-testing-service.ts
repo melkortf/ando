@@ -1,12 +1,12 @@
 import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { DaemonInfo } from '../models/daemon-info';
 import { ServerInfo } from '../models/server-info';
+import { Subject } from 'rxjs/Subject';
 
 export class MorgothTestingService {
-  info = new ReplaySubject<DaemonInfo>(1);
-  servers = new ReplaySubject<ServerInfo[]>(1);
-  error = new ReplaySubject<string>(1);
+  info = new Subject<DaemonInfo>();
+  servers = new Subject<ServerInfo[]>();
+  error = new Subject<string>();
 
   getError(): Observable<string> {
     return this.error.asObservable();
