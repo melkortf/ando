@@ -1,11 +1,11 @@
 import { Observable } from 'rxjs/Observable';
 import { DaemonInfo } from '../models/daemon-info';
-import { ServerInfo } from '../models/server-info';
+import { Server } from '../models/server';
 import { Subject } from 'rxjs/Subject';
 
 export class MorgothTestingService {
   info = new Subject<DaemonInfo>();
-  servers = new Subject<ServerInfo[]>();
+  servers = new Subject<Server[]>();
   error = new Subject<string>();
 
   getError(): Observable<string> {
@@ -24,7 +24,7 @@ export class MorgothTestingService {
     this.info.next(info);
   }
 
-  getServers(): Observable<ServerInfo[]> {
+  getServers(): Observable<Server[]> {
     return this.servers.asObservable();
   }
 }

@@ -5,7 +5,7 @@ interface ServerStatus {
   map: string;
 }
 
-export interface ServerInfo {
+export interface Server {
   name: string;
   state: string;
   status: ServerStatus;

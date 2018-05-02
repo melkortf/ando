@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MorgothService } from '../../morgoth/morgoth.service';
-import { ServerInfo } from '../../morgoth/models/server-info';
+import { Server } from '../../morgoth/models/server';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ServerListComponent {
 
-  servers: Observable<ServerInfo[]>;
+  servers: Observable<Server[]>;
 
   constructor(
     private morgoth: MorgothService

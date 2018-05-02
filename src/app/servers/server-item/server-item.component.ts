@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ServerInfo } from '../../morgoth/models/server-info';
+import { Server } from '../../morgoth/models/server';
 
 @Component({
   selector: 'ando-server-item',
@@ -9,7 +9,7 @@ import { ServerInfo } from '../../morgoth/models/server-info';
 export class ServerItemComponent {
 
   @Input()
-  server: ServerInfo;
+  server: Server;
 
   stateText(state: string): string {
     switch (state) {

@@ -1,24 +1,28 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ServerItemComponent } from './server-item.component';
-import { ServerInfo } from '../../morgoth/models/server-info';
+import { Server } from '../../morgoth/models/server';
 import { By } from '@angular/platform-browser';
 
-const OfflineServer: ServerInfo = {
+const OfflineServer: Server = {
   name: 'TEST_NAME_SERVER_OFFLINE',
-  hostname: null,
-  playerCount: 0,
-  maxPlayers: 0,
-  map: null,
-  state: 'Offline'
+  state: 'Offline',
+  status: {
+    hostname: null,
+    playerCount: 0,
+    maxPlayers: 0,
+    map: null,
+  }
 };
 
-const OnlineServer: ServerInfo = {
+const OnlineServer: Server = {
   name: 'TEST_NAME_SERVER_ONLINE',
-  hostname: 'TEST_HOSTNAME_SERVER_ONLINE',
-  playerCount: 0,
-  maxPlayers: 24,
-  map: 'TEST_MAP',
-  state: 'Running'
+  state: 'Running',
+  status: {
+    hostname: 'TEST_HOSTNAME_SERVER_ONLINE',
+    playerCount: 0,
+    maxPlayers: 24,
+    map: 'TEST_MAP',
+  }
 };
 
 describe('ServerItemComponent', () => {
@@ -55,7 +59,7 @@ describe('ServerItemComponent', () => {
     fixture.detectChanges();
 
     const name = fixture.debugElement.query(By.css('li>ul>li:first-child')).nativeElement as HTMLElement;
-    expect(name.innerText).toMatch(OnlineServer.hostname);
+    expect(name.innerText).toMatch(OnlineServer.status.hostname);
   });
 
   it('shows server status', () => {
