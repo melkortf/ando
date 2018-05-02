@@ -26,7 +26,7 @@ describe('MorgothService', () => {
     inject([MorgothService, HttpTestingController], (service: MorgothService, ctrl: HttpTestingController) => {
 
       service.getServers().subscribe();
-      ctrl.expectOne('FAKE_HOST/');
+      ctrl.expectOne('FAKE_HOST/daemon');
       ctrl.expectOne('FAKE_HOST/servers');
       ctrl.verify();
 
