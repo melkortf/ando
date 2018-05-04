@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs/Observable';
-import { DaemonInfo } from '../models/daemon-info';
+import { Daemon } from '../models/daemon';
 import { Server } from '../models/server';
 import { Subject } from 'rxjs/Subject';
 
 export class MorgothTestingService {
-  info = new Subject<DaemonInfo>();
+  info = new Subject<Daemon>();
   servers = new Subject<Server[]>();
   error = new Subject<string>();
 
@@ -16,11 +16,11 @@ export class MorgothTestingService {
     this.error.next(error);
   }
 
-  getInfo(): Observable<DaemonInfo> {
+  getInfo(): Observable<Daemon> {
     return this.info.asObservable();
   }
 
-  nextInfo(info: DaemonInfo) {
+  nextInfo(info: Daemon) {
     this.info.next(info);
   }
 

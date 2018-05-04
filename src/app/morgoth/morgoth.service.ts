@@ -2,9 +2,7 @@ import { Injectable, InjectionToken, Inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Server } from './models/server';
 import { Observable } from 'rxjs/Observable';
-import { DaemonInfo } from './models/daemon-info';
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import { catchError } from 'rxjs/operators';
+import { Daemon } from './models/daemon';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import * as socketIo from 'socket.io-client';
 
@@ -13,7 +11,7 @@ export const MORGOTH_DOMAIN = new InjectionToken<string>('morgoth.domain');
 @Injectable()
 export class MorgothService {
 
-  info: ReplaySubject<DaemonInfo>;
+  info: ReplaySubject<Daemon>;
   servers: ReplaySubject<Server[]>;
   error: ReplaySubject<string>;
   ioSocket; // todo
@@ -22,11 +20,11 @@ export class MorgothService {
     private http: HttpClient,
     @Inject(MORGOTH_DOMAIN) private morgothUrl: string
   ) {
-    this.info = new ReplaySubject<DaemonInfo>(1);
+    this.info = new ReplaySubject<Daemon>(1);
     this.servers = new ReplaySubject<Server[]>(1);
     this.error = new ReplaySubject<string>(1);
 
-    this.http.get<DaemonInfo>(`${this.morgothUrl}/daemon`).subscribe(
+    this.http.get<Daemon>(`${this.morgothUrl}/daemon`).subscribe(
       info => this.info.next(info),
       error => this.handleError(error),
     );
@@ -50,7 +48,7 @@ export class MorgothService {
     return this.error.asObservable();
   }
 
-  getInfo(): Observable<DaemonInfo> {
+  getInfo(): Observable<Daemon> {
     return this.info.asObservable();
   }
 
