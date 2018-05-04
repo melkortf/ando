@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ServerItemComponent } from './server-item.component';
 import { Server } from '../../morgoth/models/server';
 import { By } from '@angular/platform-browser';
+import { SharedModule } from '../../shared/shared.module';
 
 const OfflineServer: Server = {
   name: 'TEST_NAME_SERVER_OFFLINE',
@@ -31,6 +32,7 @@ describe('ServerItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ SharedModule ],
       declarations: [ ServerItemComponent ]
     })
     .compileComponents();
