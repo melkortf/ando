@@ -9,6 +9,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { ServersModule } from './servers/servers.module';
 import { MorgothErrorAlertComponent } from './morgoth-error-alert/morgoth-error-alert.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { MorgothErrorAlertComponent } from './morgoth-error-alert/morgoth-error-
     SharedModule,
     ServersModule,
     AppRoutingModule,
+    NgbModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

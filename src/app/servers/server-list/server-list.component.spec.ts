@@ -4,6 +4,7 @@ import { ServerItemComponent } from '../server-item/server-item.component';
 import { MorgothService } from '../../morgoth/morgoth.service';
 import { MorgothTestingService } from '../../morgoth/testing';
 import { MorgothModule } from '../../morgoth/morgoth.module';
+import { SharedModule } from '../../shared/shared.module';
 
 describe('ServerListComponent', () => {
   let component: ServerListComponent;
@@ -13,6 +14,7 @@ describe('ServerListComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         MorgothModule,
+        SharedModule,
       ],
       declarations: [
         ServerItemComponent,

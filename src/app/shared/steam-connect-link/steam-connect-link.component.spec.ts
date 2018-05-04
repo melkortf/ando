@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SteamConnectLinkComponent } from './steam-connect-link.component';
 
 describe('SteamConnectLinkComponent', () => {
