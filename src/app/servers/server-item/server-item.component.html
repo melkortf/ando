@@ -2,9 +2,7 @@
   class="list-group-item d-flex justify-content-between align-items-center">
   <ul class="list-inline">
     <li class="list-inline-item">
-      <ando-steam-connect-link>
-        {{ server.status.hostname ? server.status.hostname : server.name }}
-      </ando-steam-connect-link>
+      {{ server.status.hostname ? server.status.hostname : server.name }}
     </li>
     <li class="list-inline-item" *ngIf="server.state === 'Running'">
       <span class="server-status">
@@ -12,15 +10,9 @@
       </span>
     </li>
   </ul>
-  <span class="badge"
-    [ngClass]="{
-      'badge-secondary': server.state === 'Offline',
-      'badge-success': server.state === 'Running',
-      'badge-light': server.state === 'Starting',
-      'badge-dark': server.state === 'ShuttingDown',
-      'badge-danger': server.state === 'Crashed'
-    }"
-  >
-    {{ stateText(server.state) }}
+
+  <span>
+    <ando-server-status-badge [server]="server"></ando-server-status-badge>
+    <ando-server-connect-badge [server]="server"></ando-server-connect-badge>
   </span>
 </li>

@@ -1,19 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { SteamConnectLinkComponent } from './steam-connect-link.component';
 
-describe('SteamConnectLinkComponent', () => {
-  let component: SteamConnectLinkComponent;
-  let fixture: ComponentFixture<SteamConnectLinkComponent>;
+import { ServerConnectBadgeComponent } from './server-connect-badge.component';
+
+describe('ServerConnectBadgeComponent', () => {
+  let component: ServerConnectBadgeComponent;
+  let fixture: ComponentFixture<ServerConnectBadgeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SteamConnectLinkComponent ]
+      declarations: [ ServerConnectBadgeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SteamConnectLinkComponent);
+    fixture = TestBed.createComponent(ServerConnectBadgeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

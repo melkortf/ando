@@ -1,0 +1,11 @@
+<span class="badge"
+  [ngClass]="{
+    'badge-secondary': server.state === 'Offline',
+    'badge-success': server.state === 'Running',
+    'badge-light': server.state === 'Starting',
+    'badge-dark': server.state === 'ShuttingDown',
+    'badge-danger': server.state === 'Crashed'
+  }"
+>
+  {{ stateText(server.state) }}
+</span>

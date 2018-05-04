@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ErrorAlertComponent } from './error-alert/error-alert.component';
 import { CommonModule } from '@angular/common';
-import { SteamConnectLinkComponent } from './steam-connect-link/steam-connect-link.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -10,12 +9,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule,
   ],
   declarations: [
-    ErrorAlertComponent,
-    SteamConnectLinkComponent
+    ErrorAlertComponent
   ],
   exports: [
-    ErrorAlertComponent,
-    SteamConnectLinkComponent
+    ErrorAlertComponent
   ]
 })
 export class SharedModule { }

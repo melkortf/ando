@@ -2,8 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ServerItemComponent } from './server-item.component';
 import { Server } from '../../morgoth/models/server';
 import { By } from '@angular/platform-browser';
-import { SharedModule } from '../../shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ServerStatusBadgeComponent } from '../server-status-badge/server-status-badge.component';
+import { ServerConnectBadgeComponent } from '../server-connect-badge/server-connect-badge.component';
 
 const OfflineServer: Server = {
   name: 'TEST_NAME_SERVER_OFFLINE',
@@ -34,10 +35,13 @@ describe('ServerItemComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        SharedModule,
         NgbModule.forRoot()
       ],
-      declarations: [ ServerItemComponent ]
+      declarations: [
+        ServerItemComponent,
+        ServerStatusBadgeComponent,
+        ServerConnectBadgeComponent,
+      ]
     })
     .compileComponents();
   }));
@@ -74,19 +78,5 @@ describe('ServerItemComponent', () => {
 
     const status = fixture.debugElement.query(By.css('li>ul>li+li>span')).nativeElement as HTMLElement;
     expect(status.innerText).toMatch('TEST_MAP 0/24');
-  });
-
-  it('shows a proper state badge', () => {
-    component.server = OfflineServer;
-    fixture.detectChanges();
-
-    let badge = fixture.debugElement.query(By.css('li>span.badge')).nativeElement as HTMLElement;
-    expect(badge.innerText).toMatch('offline');
-
-    component.server = OnlineServer;
-    fixture.detectChanges();
-
-    badge = fixture.debugElement.query(By.css('li>span.badge')).nativeElement as HTMLElement;
-    expect(badge.innerText).toMatch('running');
   });
 });

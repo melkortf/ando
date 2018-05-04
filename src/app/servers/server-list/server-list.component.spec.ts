@@ -5,6 +5,8 @@ import { MorgothService } from '../../morgoth/morgoth.service';
 import { MorgothTestingService } from '../../morgoth/testing';
 import { MorgothModule } from '../../morgoth/morgoth.module';
 import { SharedModule } from '../../shared/shared.module';
+import { ServerStatusBadgeComponent } from '../server-status-badge/server-status-badge.component';
+import { ServerConnectBadgeComponent } from '../server-connect-badge/server-connect-badge.component';
 
 describe('ServerListComponent', () => {
   let component: ServerListComponent;
@@ -18,7 +20,9 @@ describe('ServerListComponent', () => {
       ],
       declarations: [
         ServerItemComponent,
-        ServerListComponent
+        ServerListComponent,
+        ServerStatusBadgeComponent,
+        ServerConnectBadgeComponent,
       ],
       providers: [
         {
