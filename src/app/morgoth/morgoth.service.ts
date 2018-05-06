@@ -4,7 +4,7 @@ import { Server } from './models/server';
 import { Observable } from 'rxjs/Observable';
 import { Daemon } from './models/daemon';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-import * as socketIo from 'socket.io-client';
+import * as ioClient from 'socket.io-client';
 
 export const MORGOTH_DOMAIN = new InjectionToken<string>('morgoth.domain');
 
@@ -14,7 +14,6 @@ export class MorgothService {
   info: ReplaySubject<Daemon>;
   servers: ReplaySubject<Server[]>;
   error: ReplaySubject<string>;
-  ioSocket; // todo
 
   constructor(
     private http: HttpClient,
@@ -32,6 +31,14 @@ export class MorgothService {
     this.http.get<Server[]>(`${this.morgothUrl}/servers`).subscribe(
       servers => {
         this.servers.next(servers);
+        for (const s of servers) {
+          const io = ioClient(`${this.morgothUrl}/servers/${s.name}`);
+          io.on('stateChanged', state => s.state = state);
+          io.on('hostnameChanged', hostname => s.hostname = hostname);
+          io.on('playerCountChanged', playerCount => s.playerCount = playerCount);
+          io.on('maxPlayersChanged', maxPlayers => s.maxPlayers = maxPlayers);
+          io.on('mapChanged', map => s.map = map);
+        }
       }
     );
   }
