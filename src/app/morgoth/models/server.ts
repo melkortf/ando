@@ -5,4 +5,5 @@ export interface Server {
   playerCount: number;
   maxPlayers: number;
   map: string;
+  address: string;
 }

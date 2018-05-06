@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Server } from '../../morgoth/models/server';
+import * as urlParse from 'url-parse';
 
 @Component({
   selector: 'ando-server-connect-badge',
@@ -15,11 +16,9 @@ export class ServerConnectBadgeComponent {
   constructor(private sanitizer: DomSanitizer) {}
 
   get connect(): SafeUrl {
-    if (!this.server) {
-      return '#';
-    }
-
-    return this.sanitizer.bypassSecurityTrustUrl('steam://connect/melkor.tf:27015');
+    const url = urlParse(this.server.address);
+    const port = url.port || 27015;
+    return this.sanitizer.bypassSecurityTrustUrl(url.protocol + '//connect/' + url.hostname + ':' + port);
   }
 
 }

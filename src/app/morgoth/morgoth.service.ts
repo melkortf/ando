@@ -38,6 +38,7 @@ export class MorgothService {
           io.on('playerCountChanged', playerCount => s.playerCount = playerCount);
           io.on('maxPlayersChanged', maxPlayers => s.maxPlayers = maxPlayers);
           io.on('mapChanged', map => s.map = map);
+          io.on('addressChanged', address => s.address = address);
         }
       }
     );
