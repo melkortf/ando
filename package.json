@@ -25,6 +25,7 @@
     "core-js": "^2.4.1",
     "rxjs": "^5.5.6",
     "socket.io": "^2.1.0",
+    "url-parse": "^1.4.0",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
@@ -36,6 +37,7 @@
     "@types/node": "^6.0.107",
     "@types/socket.io": "^1.4.33",
     "@types/socket.io-client": "^1.4.32",
+    "@types/url-parse": "^1.1.0",
     "codelyzer": "^4.3.0",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
