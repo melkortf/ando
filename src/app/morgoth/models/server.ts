@@ -1,6 +1,6 @@
 export interface Server {
   name: string;
-  state: string;
+  state: 'Offline' | 'Starting' | 'Running' | 'ShuttingDown' | 'Crashed';
   hostname: string;
   playerCount: number;
   maxPlayers: number;
