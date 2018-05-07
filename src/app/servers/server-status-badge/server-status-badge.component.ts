@@ -11,26 +11,16 @@ export class ServerStatusBadgeComponent {
   @Input()
   server: Server;
 
-  stateText(state: string): string {
-    switch (state) {
-      case 'Offline':
-        return 'offline';
+  stateMap = new Map([
+    [ 'Offline', 'offline' ],
+    [ 'Running', 'running' ],
+    [ 'Starting', 'starting' ],
+    [ 'ShuttingDown', 'shutting down' ],
+    [ 'Crashed', 'crashed' ]
+  ]);
 
-      case 'Running':
-        return 'running';
-
-      case 'Starting':
-        return 'starting';
-
-      case 'ShuttingDown':
-        return 'shutting down';
-
-      case 'Crashed':
-        return 'crashed';
-
-      default:
-        return state;
-    }
+  get state(): string {
+    return this.stateMap.get(this.server.state) || this.server.state;
   }
 
 }
