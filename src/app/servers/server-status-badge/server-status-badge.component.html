@@ -1,4 +1,5 @@
-<span class="badge"
+<span *ngIf="server"
+  class="badge"
   [ngClass]="{
     'badge-secondary': server.state === 'Offline',
     'badge-success': server.state === 'Running',

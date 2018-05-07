@@ -9,23 +9,21 @@ import { ServerConnectBadgeComponent } from '../server-connect-badge/server-conn
 const OfflineServer: Server = {
   name: 'TEST_NAME_SERVER_OFFLINE',
   state: 'Offline',
-  status: {
-    hostname: null,
-    playerCount: 0,
-    maxPlayers: 0,
-    map: null,
-  }
+  hostname: null,
+  playerCount: 0,
+  maxPlayers: 0,
+  map: null,
+  address: '',
 };
 
 const OnlineServer: Server = {
   name: 'TEST_NAME_SERVER_ONLINE',
   state: 'Running',
-  status: {
-    hostname: 'TEST_HOSTNAME_SERVER_ONLINE',
-    playerCount: 0,
-    maxPlayers: 24,
-    map: 'TEST_MAP',
-  }
+  hostname: 'TEST_HOSTNAME_SERVER_ONLINE',
+  playerCount: 0,
+  maxPlayers: 24,
+  map: 'TEST_MAP',
+  address: 'TEST_PROTOCOL://TEST_HOSTNAME:1234',
 };
 
 describe('ServerItemComponent', () => {
@@ -69,7 +67,7 @@ describe('ServerItemComponent', () => {
     fixture.detectChanges();
 
     const name = fixture.debugElement.query(By.css('li>ul>li:first-child')).nativeElement as HTMLElement;
-    expect(name.innerText).toMatch(OnlineServer.status.hostname);
+    expect(name.innerText).toMatch(OnlineServer.hostname);
   });
 
   it('shows server status', () => {
