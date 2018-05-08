@@ -17,7 +17,7 @@ const OnlineServer: Server = {
   playerCount: 0,
   maxPlayers: 24,
   map: 'TEST_MAP',
-  address: 'TEST_PROTOCOL://TEST_HOSTNAME:1234',
+  address: 'testprot://testhostname:1234',
 };
 
 export { OfflineServer, OnlineServer };
