@@ -1,7 +1,6 @@
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  Subject } from 'rxjs';
 import { Daemon } from '../models/daemon';
 import { Server } from '../models/server';
-import { Subject } from 'rxjs/Subject';
 
 export class MorgothTestingService {
   info = new Subject<Daemon>();

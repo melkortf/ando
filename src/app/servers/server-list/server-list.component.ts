@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MorgothService } from '../../morgoth/morgoth.service';
 import { Server } from '../../morgoth/models/server';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'ando-server-list',

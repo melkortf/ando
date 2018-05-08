@@ -1,9 +1,8 @@
 import { Injectable, InjectionToken, Inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Server } from './models/server';
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  ReplaySubject } from 'rxjs';
 import { Daemon } from './models/daemon';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
 import * as ioClient from 'socket.io-client';
 
 export const MORGOTH_DOMAIN = new InjectionToken<string>('morgoth.domain');
