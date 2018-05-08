@@ -10,4 +10,4 @@ before_script:
  - npm install -g @angular/cli
 
 script:
- - node_modules/.bin/karma start --single-run --browsers ChromeHeadless karma.conf.js
+ - npm run test:ci
