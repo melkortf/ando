@@ -25,7 +25,7 @@ describe('ServerStatusBadgeComponent', () => {
   });
 
   it('should show correct state text and apply appropriate class', () => {
-    const server = OfflineServer;
+    const server = Object.assign({}, OfflineServer);
     component.server = server;
     fixture.detectChanges();
 
