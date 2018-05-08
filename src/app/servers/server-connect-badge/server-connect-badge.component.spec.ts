@@ -48,7 +48,7 @@ describe('ServerConnectBadgeComponent', () => {
     fixture.detectChanges();
     expect(fixture.debugElement.query(By.css('a'))).toBeFalsy();
 
-    const server = OnlineServer;
+    const server = Object.assign({}, OnlineServer);
     server.address = '';
     component.server = server;
     fixture.detectChanges();
