@@ -15,6 +15,13 @@ export class ServerConnectBadgeComponent {
 
   constructor(private sanitizer: DomSanitizer) {}
 
+  get canConnect(): boolean {
+    return this.server
+      && this.server.state === 'Running'
+      && this.server.address.length > 0;
+      // todo !this.server.passwordProtected
+  }
+
   get connect(): SafeUrl {
     const url = urlParse(this.server.address);
     const port = url.port || 27015;
