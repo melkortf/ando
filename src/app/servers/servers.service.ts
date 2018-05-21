@@ -27,7 +27,7 @@ export class ServersService {
   private fetchServers() {
     this.http.get<Server[]>(this.anneEndpoints.servers)
       .pipe(
-        map(servers => servers.map(s => new ServerImpl(s))),
+        map(servers => servers.map(s => new ServerImpl(this.anneEndpoints.servers, s))),
         catchError(err => of([]))
       )
       .subscribe(this.servers);
