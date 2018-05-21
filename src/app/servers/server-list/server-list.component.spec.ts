@@ -6,10 +6,12 @@ import { ServerStatusBadgeComponent } from '../server-status-badge/server-status
 import { ServerConnectBadgeComponent } from '../server-connect-badge/server-connect-badge.component';
 import { ServersService } from '../servers.service';
 import { ServersTestingService } from '../testing/servers-testing.service';
+import { By } from '@angular/platform-browser';
 
 describe('ServerListComponent', () => {
   let component: ServerListComponent;
   let fixture: ComponentFixture<ServerListComponent>;
+  let service: ServersTestingService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -30,6 +32,8 @@ describe('ServerListComponent', () => {
       ]
     })
     .compileComponents();
+
+    service = TestBed.get(ServersService);
   }));
 
   beforeEach(() => {
@@ -42,7 +46,15 @@ describe('ServerListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should handle errors', () => {
+  it('should not render unless the service resolves', () => {
+    expect(fixture.debugElement.query(By.css('ul'))).toBe(null);
+  });
 
+  it('should show message if there are no servers', () => {
+    service.nextServers([]);
+    fixture.detectChanges();
+
+    const msg = fixture.debugElement.query(By.css('small')).nativeElement as HTMLElement;
+    expect(msg.innerText).toContain('No servers');
   });
 });
