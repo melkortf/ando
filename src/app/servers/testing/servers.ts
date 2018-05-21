@@ -1,4 +1,4 @@
-import { Server } from '../../morgoth/models/server';
+import { Server } from '../models';
 
 const OfflineServer: Server = {
   name: 'TEST_NAME_SERVER_OFFLINE',

@@ -1,13 +1,12 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { MorgothErrorAlertComponent } from './morgoth-error-alert/morgoth-error-alert.component';
 import { RouterModule } from '@angular/router';
-import { DaemonStatusComponent } from './daemon-status/daemon-status.component';
 import { SharedModule } from './shared/shared.module';
-import { MorgothTestingService } from './morgoth/testing';
-import { MorgothService } from './morgoth/morgoth.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
+import { DaemonStatusComponent } from './daemon/daemon-status/daemon-status.component';
+import { DaemonService } from './daemon/daemon.service';
+import { DaemonTestingService } from './daemon/testing/daemon-testing.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -18,13 +17,12 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        DaemonStatusComponent,
-        MorgothErrorAlertComponent,
+        DaemonStatusComponent
       ],
       providers: [
         {
-          provide: MorgothService,
-          useClass: MorgothTestingService
+          provide: DaemonService,
+          useClass: DaemonTestingService
         }
       ]
     }).compileComponents();

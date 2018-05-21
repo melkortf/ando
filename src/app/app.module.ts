@@ -1,32 +1,34 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
-import { MorgothModule } from './morgoth/morgoth.module';
-import { SharedModule } from './shared/shared.module';
-import { DaemonStatusComponent } from './daemon-status/daemon-status.component';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import { AppRoutingModule } from './app-routing.module';
-import { ServersModule } from './servers/servers.module';
-import { MorgothErrorAlertComponent } from './morgoth-error-alert/morgoth-error-alert.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { environment } from '../environments/environment';
+import { AppComponent } from './app.component';
+import { ServersModule } from './servers/servers.module';
+import { SharedModule } from './shared/shared.module';
+import { AppRoutingModule } from './app-routing.module';
+import { DaemonModule } from './daemon/daemon.module';
+import { ANNE_DOMAIN } from './anne-endpoints.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DaemonStatusComponent,
-    MorgothErrorAlertComponent,
   ],
   imports: [
     BrowserModule,
-    MorgothModule,
+    DaemonModule,
     SharedModule,
     ServersModule,
     AppRoutingModule,
     NgbModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: ANNE_DOMAIN,
+      useValue: environment.anneDomain
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

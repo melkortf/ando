@@ -1,12 +1,11 @@
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { ServerListComponent } from './server-list.component';
 import { ServerItemComponent } from '../server-item/server-item.component';
-import { MorgothService } from '../../morgoth/morgoth.service';
-import { MorgothTestingService } from '../../morgoth/testing';
-import { MorgothModule } from '../../morgoth/morgoth.module';
 import { SharedModule } from '../../shared/shared.module';
 import { ServerStatusBadgeComponent } from '../server-status-badge/server-status-badge.component';
 import { ServerConnectBadgeComponent } from '../server-connect-badge/server-connect-badge.component';
+import { ServersService } from '../servers.service';
+import { ServersTestingService } from '../testing/servers-testing.service';
 
 describe('ServerListComponent', () => {
   let component: ServerListComponent;
@@ -15,7 +14,6 @@ describe('ServerListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        MorgothModule,
         SharedModule,
       ],
       declarations: [
@@ -26,8 +24,8 @@ describe('ServerListComponent', () => {
       ],
       providers: [
         {
-          provide: MorgothService,
-          useClass: MorgothTestingService
+          provide: ServersService,
+          useClass: ServersTestingService
         }
       ]
     })
@@ -40,7 +38,11 @@ describe('ServerListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', inject([MorgothService], (service: MorgothTestingService) => {
+  it('should create', () => {
     expect(component).toBeTruthy();
-  }));
+  });
+
+  it('should handle errors', () => {
+
+  });
 });

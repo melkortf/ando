@@ -6,6 +6,6 @@
 export const environment = {
   production: false,
 
-  // where the morgoth RESTful API is running
-  morgothDomain: 'http://localhost:3000',
+  // where the anne server is running
+  anneDomain: 'http://localhost:3000',
 };

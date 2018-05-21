@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { Server } from '../../morgoth/models/server';
 import * as urlParse from 'url-parse';
+import { Server } from '../models';
 
 @Component({
   selector: 'ando-server-connect-badge',

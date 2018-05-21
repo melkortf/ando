@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Server } from '../../morgoth/models/server';
+import { Server } from '../models';
 
 @Component({
   selector: 'ando-server-status-badge',
