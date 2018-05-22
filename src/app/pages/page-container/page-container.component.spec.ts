@@ -4,6 +4,9 @@ import { PageContainerComponent } from './page-container.component';
 import { ActivatedRoute } from '@angular/router';
 import { Page } from '../models/page';
 import { of } from 'rxjs';
+import { PageComponent } from '../page/page.component';
+import { PagesService } from '../pages.service';
+import { PagesTestingService } from '../testing/pages-testing.service';
 
 const page: Page = {
   slug: 'FAKE_SLUG'
@@ -15,11 +18,18 @@ describe('PageContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PageContainerComponent ],
+      declarations: [
+        PageContainerComponent,
+        PageComponent,
+      ],
       providers: [
         {
           provide: ActivatedRoute,
-          useValue: { data: of(page)}
+          useValue: { data: of(page) }
+        },
+        {
+          provide: PagesService,
+          useClass: PagesTestingService
         }
       ]
     })
