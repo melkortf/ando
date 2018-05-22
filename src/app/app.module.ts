@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MarkdownModule } from 'ngx-markdown';
+import { NgProgressModule } from '@ngx-progressbar/core';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -26,6 +27,7 @@ import { ANNE_DOMAIN } from './anne-endpoints.service';
     AppRoutingModule,
     NgbModule.forRoot(),
     MarkdownModule.forRoot(),
+    NgProgressModule.forRoot(),
   ],
   providers: [
     {
