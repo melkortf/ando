@@ -7,6 +7,8 @@ import { of } from 'rxjs';
 import { PageComponent } from '../page/page.component';
 import { PagesService } from '../pages.service';
 import { PagesTestingService } from '../testing/pages-testing.service';
+import { MarkdownModule } from 'ngx-markdown';
+import { NgProgressModule } from '@ngx-progressbar/core';
 
 const page: Page = {
   slug: 'FAKE_SLUG'
@@ -21,6 +23,10 @@ describe('PageContainerComponent', () => {
       declarations: [
         PageContainerComponent,
         PageComponent,
+      ],
+      imports: [
+        NgProgressModule.forRoot(),
+        MarkdownModule.forRoot(),
       ],
       providers: [
         {

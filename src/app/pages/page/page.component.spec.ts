@@ -6,6 +6,8 @@ import { Observable, of } from 'rxjs';
 import { PagesService } from '../pages.service';
 import { PagesTestingService } from '../testing/pages-testing.service';
 import { By } from '@angular/platform-browser';
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { MarkdownModule } from 'ngx-markdown';
 
 describe('PageComponent', () => {
   let component: PageComponent;
@@ -14,6 +16,10 @@ describe('PageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ PageComponent ],
+      imports: [
+        NgProgressModule.forRoot(),
+        MarkdownModule.forRoot(),
+      ],
       providers: [
         {
           provide: PagesService,
