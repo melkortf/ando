@@ -8,4 +8,12 @@ export const environment = {
 
   // where the anne server is running
   anneDomain: 'http://localhost:3000',
+
+  // static pages
+  pages: [
+    {
+      slug: 'faq',
+      source: 'https://raw.githubusercontent.com/melkortf/documents/master/FAQ.md'
+    }
+  ]
 };

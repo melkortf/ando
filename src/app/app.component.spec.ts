@@ -7,6 +7,7 @@ import { By } from '@angular/platform-browser';
 import { DaemonStatusComponent } from './daemon/daemon-status/daemon-status.component';
 import { DaemonService } from './daemon/daemon.service';
 import { DaemonTestingService } from './daemon/testing/daemon-testing.service';
+import { NgProgressModule } from '@ngx-progressbar/core';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -14,6 +15,7 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule,
         SharedModule,
+        NgProgressModule.forRoot(),
       ],
       declarations: [
         AppComponent,
