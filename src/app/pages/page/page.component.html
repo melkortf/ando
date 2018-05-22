@@ -1,4 +1,7 @@
-<span *ngIf="body">{{ body }}</span>
+<span *ngIf="body">
+  <markdown [data]="body"></markdown>
+</span>
+
 <div *ngIf="error"
   class="alert alert-danger">
   {{ error }}

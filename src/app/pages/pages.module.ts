@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { PageContainerComponent } from './page-container/page-container.component';
@@ -11,6 +12,7 @@ import { PageComponent } from './page/page.component';
     CommonModule,
     HttpClientModule,
     PagesRoutingModule,
+    MarkdownModule.forChild(),
   ],
   declarations: [
     PageContainerComponent,
