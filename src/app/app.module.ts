@@ -5,10 +5,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
+import { DaemonModule } from './daemon/daemon.module';
+import { PagesModule } from './pages/pages.module';
 import { ServersModule } from './servers/servers.module';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
-import { DaemonModule } from './daemon/daemon.module';
 import { ANNE_DOMAIN } from './anne-endpoints.service';
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ANNE_DOMAIN } from './anne-endpoints.service';
   imports: [
     BrowserModule,
     DaemonModule,
+    PagesModule,
     SharedModule,
     ServersModule,
     AppRoutingModule,

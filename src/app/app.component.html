@@ -1,6 +1,14 @@
 <header>
-  <nav class="navbar navbar-dark bg-dark shadow-sm mb-2">
-    <span class="navbar-brand">melkor.tf servers</span>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-2">
+    <span class="navbar-brand">melkor.tf</span>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/servers']">servers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/pages', 'faq']">faq</a>
+      </li>
+    </ul>
     <span class="navbar-text">
       <a href="https://github.com/melkortf"><img src="assets/github-circle.svg"></a>
       <a href="https://steamcommunity.com/id/nieduzy/"><img src="assets/steam.svg"></a>
