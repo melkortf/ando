@@ -1,1 +1,5 @@
-<span>{{ page?.source }}</span>
+<span *ngIf="body">{{ body }}</span>
+<div *ngIf="error"
+  class="alert alert-danger">
+  {{ error }}
+</div>

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Page } from '../models/page';
+import { PagesService } from '../pages.service';
 
 @Component({
   selector: 'ando-page',
@@ -9,6 +10,19 @@ import { Page } from '../models/page';
 export class PageComponent {
 
   @Input()
-  page: Page;
+  set page(page: Page) {
+    this.pagesService.fetchPage(page)
+      .subscribe(
+        body => this.body = body,
+        error => this.error = error
+      );
+  }
+
+  body: string | undefined;
+  error: string | undefined;
+
+  constructor(
+    private pagesService: PagesService
+  ) { }
 
 }
