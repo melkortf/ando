@@ -1,0 +1,7 @@
+<a
+  *ngFor="let link of socialLinks"
+  [href]="link.target"
+  [title]="link.icon"
+  target="_blank">
+  <img [src]="link.iconSource">
+</a>

@@ -13,6 +13,7 @@ import { ServersModule } from './servers/servers.module';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { ANNE_DOMAIN } from './anne-endpoints.service';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ANNE_DOMAIN } from './anne-endpoints.service';
   ],
   imports: [
     BrowserModule,
+    CoreModule,
     DaemonModule,
     PagesModule,
     SharedModule,

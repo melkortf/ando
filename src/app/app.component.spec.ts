@@ -8,18 +8,21 @@ import { DaemonStatusComponent } from './daemon/daemon-status/daemon-status.comp
 import { DaemonService } from './daemon/daemon.service';
 import { DaemonTestingService } from './daemon/testing/daemon-testing.service';
 import { NgProgressModule } from '@ngx-progressbar/core';
+import { SocialLinksComponent } from './core/social-links/social-links.component';
+import { CoreModule } from './core/core.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
+        CoreModule,
         SharedModule,
         NgProgressModule.forRoot(),
+        RouterTestingModule,
       ],
       declarations: [
         AppComponent,
-        DaemonStatusComponent
+        DaemonStatusComponent,
       ],
       providers: [
         {
@@ -41,16 +44,5 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('header>nav>span.navbar-brand').textContent).toContain('melkor.tf');
-  }));
-
-  it('should render social links in navbar', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-
-    const github = fixture.debugElement.query(By.css('header>nav>span.navbar-text>a:nth-child(1)')).nativeElement as HTMLAnchorElement;
-    expect(github.href).toBe('https://github.com/melkortf');
-
-    const steam = fixture.debugElement.query(By.css('header>nav>span.navbar-text>a:nth-child(2)')).nativeElement as HTMLAnchorElement;
-    expect(steam.href).toBe('https://steamcommunity.com/id/nieduzy/');
   }));
 });
