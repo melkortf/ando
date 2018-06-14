@@ -9,7 +9,7 @@ export const environment = {
   // where the anne server is running
   anneDomain: 'http://localhost:3000',
 
-  social_links: [
+  socialLinks: [
     {
       icon: 'github',
       target: 'https://github.com/melkortf'

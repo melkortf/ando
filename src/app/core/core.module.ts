@@ -14,7 +14,7 @@ import { SOCIAL_LINKS } from './app-config.service';
   providers: [
     {
       provide: SOCIAL_LINKS,
-      useValue: environment.social_links
+      useValue: environment.socialLinks
     }
   ],
   exports: [
