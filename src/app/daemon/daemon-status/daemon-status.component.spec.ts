@@ -2,28 +2,28 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DaemonStatusComponent } from './daemon-status.component';
 import { DaemonService } from '../daemon.service';
-import { DaemonTestingService } from '../testing/daemon-testing.service';
 import { Daemon } from '../models';
 import { By } from '@angular/platform-browser';
+import { ReplaySubject } from 'rxjs';
+
+class DaemonServiceStub {
+  daemon = new ReplaySubject<Daemon>(1);
+  getDaemon() { return this.daemon.asObservable(); }
+}
 
 describe('DaemonStatusComponent', () => {
   let component: DaemonStatusComponent;
   let fixture: ComponentFixture<DaemonStatusComponent>;
-  let service: DaemonTestingService;
+  let daemonService: DaemonServiceStub;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ DaemonStatusComponent ],
       providers: [
-        {
-          provide: DaemonService,
-          useClass: DaemonTestingService
-        }
+        { provide: DaemonService, useClass: DaemonServiceStub }
       ]
     })
     .compileComponents();
-
-    service = TestBed.get(DaemonService);
   }));
 
   beforeEach(() => {
@@ -32,16 +32,17 @@ describe('DaemonStatusComponent', () => {
     fixture.detectChanges();
   });
 
+  beforeEach(() => {
+    daemonService = TestBed.get(DaemonService);
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
   it('should render proper version', () => {
-    const daemon: Daemon = {
-      version: 'FAKE-VERSION'
-    };
-
-    service.nextDaemon(daemon);
+    const mockDaemon: Daemon = { version: 'FAKE-VERSION' };
+    daemonService.daemon.next(mockDaemon);
     fixture.detectChanges();
 
     const status = fixture.debugElement.query(By.css('span')).nativeElement as HTMLElement;
