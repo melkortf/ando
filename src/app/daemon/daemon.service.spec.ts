@@ -1,32 +1,22 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-
 import { DaemonService } from './daemon.service';
-import { AnneEndpointsService } from '../anne-endpoints.service';
-import { HttpClient } from '@angular/common/http';
-
-class MockServersService {
-  readonly daemon = 'FAKE_DAEMON';
-}
+import { Daemon } from './models';
+import { ANNE_DOMAIN } from '../anne-domain';
 
 describe('DaemonService', () => {
-  let httpClient: HttpClient;
-  let httpTestingController: HttpTestingController;
+  let httpController: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         DaemonService,
-        {
-          provide: AnneEndpointsService,
-          useClass: MockServersService
-        }
+        { provide: ANNE_DOMAIN, useValue: 'FAKE_HOST' },
       ],
       imports: [HttpClientTestingModule]
     });
 
-    httpClient = TestBed.get(HttpClient);
-    httpTestingController = TestBed.get(HttpTestingController);
+    httpController = TestBed.get(HttpTestingController);
   });
 
   it('should be created', inject([DaemonService], (service: DaemonService) => {
@@ -34,9 +24,21 @@ describe('DaemonService', () => {
   }));
 
   it('should query anne endpoint', inject([DaemonService], (service: DaemonService) => {
-    service.getDaemon().subscribe();
-    const req = httpTestingController.expectOne('FAKE_DAEMON');
-    expect(req.request.responseType).toEqual('json');
-    httpTestingController.verify();
+    const tr = httpController.expectOne('FAKE_HOST/daemon');
+    expect(tr.request.method).toBe('GET');
+    httpController.verify();
   }));
+
+  describe('#getDaemon()', () => {
+    it('should return daemon info', done => inject([DaemonService], (service: DaemonService) => {
+      const mockDaemon: Daemon = { version: 'FAKE_VERSION' };
+
+      service.getDaemon().subscribe(daemon => {
+        expect(daemon).toEqual(mockDaemon);
+        done();
+      });
+
+      httpController.expectOne('FAKE_HOST/daemon').flush(mockDaemon);
+    })());
+  });
 });
