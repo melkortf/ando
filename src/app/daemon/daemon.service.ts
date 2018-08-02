@@ -1,9 +1,9 @@
-import { Injectable, InjectionToken, Inject } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ReplaySubject, of } from 'rxjs';
 import { Daemon } from './models';
-import { AnneEndpointsService } from '../anne-endpoints.service';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
+import { ANNE_DOMAIN } from '../anne-domain';
 
 @Injectable({
   providedIn: 'root'
@@ -14,21 +14,18 @@ export class DaemonService {
 
   constructor(
     private http: HttpClient,
-    private anneEndpoints: AnneEndpointsService
+    @Inject(ANNE_DOMAIN) private domain: string,
   ) {
-    this.fetchDaemonInfo();
+    this.http.get(`${this.domain}/daemon`)
+      .pipe(
+        tap(r => console.log(JSON.stringify(r))),
+        catchError(() => of({ version: 'unknown' })),
+      )
+      .subscribe(this.daemon);
   }
 
   getDaemon() {
     return this.daemon.asObservable();
-  }
-
-  private fetchDaemonInfo() {
-    this.http.get(this.anneEndpoints.daemon)
-      .pipe(
-        catchError(err => of({ version: 'unknown' }))
-      )
-      .subscribe(this.daemon);
   }
 
 }
