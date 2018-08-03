@@ -16,7 +16,7 @@ export class ServerConnectBadgeComponent {
   constructor(private sanitizer: DomSanitizer) {}
 
   canConnect(): boolean {
-    return this.server
+    return !!this.server
       && this.server.state === 'Running'
       && this.server.address.length > 0;
       // todo !this.server.passwordProtected

@@ -41,17 +41,30 @@ describe('ServerConnectBadgeComponent', () => {
     expect(a.href).toBe('testprot://connect/testhostname:1234');
   });
 
-  it('should be hidden if a valid connect cannot be obtained', () => {
-    expect(fixture.debugElement.query(By.css('a'))).toBeFalsy();
+  describe('#canConnect()', () => {
+    it('should return false for an offline server', () => {
+      component.server = OfflineServer;
+      expect(component.canConnect()).toBe(false);
 
-    component.server = OfflineServer;
-    fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css('a'))).toBeFalsy();
+      fixture.detectChanges();
+      expect(fixture.debugElement.query(By.css('a'))).toBeNull();
+    });
 
-    const server = Object.assign({}, OnlineServer);
-    server.address = '';
-    component.server = server;
-    fixture.detectChanges();
-    expect(fixture.debugElement.query(By.css('a'))).toBeFalsy();
+    it('should return false for a server with no address', () => {
+      const server = { ...OnlineServer, address: '' };
+      component.server = server;
+      expect(component.canConnect()).toBe(false);
+
+      fixture.detectChanges();
+      expect(fixture.debugElement.query(By.css('a'))).toBeNull();
+    });
+
+    it('should return true for an online server', () => {
+      component.server = OnlineServer;
+      expect(component.canConnect()).toBe(true);
+
+      fixture.detectChanges();
+      expect(fixture.debugElement.query(By.css('a'))).toBeTruthy();
+    });
   });
 });
