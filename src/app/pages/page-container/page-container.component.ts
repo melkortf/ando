@@ -16,7 +16,7 @@ export class PageContainerComponent {
   constructor(
     private route: ActivatedRoute
   ) {
-    this.page = route.data.pipe(
+    this.page = this.route.data.pipe(
       pluck<{}, Page>('page')
     );
   }
