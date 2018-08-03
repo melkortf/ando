@@ -1,10 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ServerItemComponent } from './server-item.component';
 import { By } from '@angular/platform-browser';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ServerStatusBadgeComponent } from '../server-status-badge/server-status-badge.component';
-import { ServerConnectBadgeComponent } from '../server-connect-badge/server-connect-badge.component';
 import { OfflineServer, OnlineServer } from '../testing/servers';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ServerItemComponent', () => {
   let component: ServerItemComponent;
@@ -12,14 +10,8 @@ describe('ServerItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NgbModule.forRoot()
-      ],
-      declarations: [
-        ServerItemComponent,
-        ServerStatusBadgeComponent,
-        ServerConnectBadgeComponent,
-      ]
+      declarations: [ ServerItemComponent ],
+      schemas: [ NO_ERRORS_SCHEMA ],
     })
     .compileComponents();
   }));
@@ -34,7 +26,7 @@ describe('ServerItemComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('shows name if the server is offline', () => {
+  it('should show name if the server is offline', () => {
     component.server = OfflineServer;
     fixture.detectChanges();
 
@@ -42,7 +34,7 @@ describe('ServerItemComponent', () => {
     expect(name.innerText).toMatch(OfflineServer.name);
   });
 
-  it('shows hostname if available', () => {
+  it('should show hostname if available', () => {
     component.server = OnlineServer;
     fixture.detectChanges();
 
@@ -50,11 +42,19 @@ describe('ServerItemComponent', () => {
     expect(name.innerText).toMatch(OnlineServer.hostname);
   });
 
-  it('shows server status', () => {
+  it('should show server status', () => {
     component.server = OnlineServer;
     fixture.detectChanges();
 
     const status = fixture.debugElement.query(By.css('li>ul>li+li>span')).nativeElement as HTMLElement;
     expect(status.innerText).toMatch('TEST_MAP 0/24');
+  });
+
+  it('should render badges', () => {
+    component.server = OnlineServer;
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.query(By.css('ando-server-status-badge'))).toBeTruthy();
+    expect(fixture.debugElement.query(By.css('ando-server-connect-badge'))).toBeTruthy();
   });
 });
