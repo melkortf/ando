@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ReplaySubject, of } from 'rxjs';
 import { Daemon } from './models';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { ANNE_DOMAIN } from '../anne-domain';
 
 @Injectable({
@@ -18,7 +18,6 @@ export class DaemonService {
   ) {
     this.http.get(`${this.domain}/daemon`)
       .pipe(
-        tap(r => console.log(JSON.stringify(r))),
         catchError(() => of({ version: 'unknown' })),
       )
       .subscribe(this.daemon);
