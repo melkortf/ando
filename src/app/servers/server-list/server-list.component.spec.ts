@@ -1,35 +1,29 @@
-import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ServerListComponent } from './server-list.component';
-import { ServerItemComponent } from '../server-item/server-item.component';
-import { SharedModule } from '../../shared/shared.module';
-import { ServerStatusBadgeComponent } from '../server-status-badge/server-status-badge.component';
-import { ServerConnectBadgeComponent } from '../server-connect-badge/server-connect-badge.component';
 import { ServersService } from '../servers.service';
-import { ServersTestingService } from '../testing/servers-testing.service';
 import { By } from '@angular/platform-browser';
+import { ReplaySubject } from 'rxjs';
+import { Server } from '../models';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { OfflineServer, OnlineServer } from '../testing/servers';
+
+class ServersServiceStub {
+  servers = new ReplaySubject<Server[]>(1);
+  getServers() { return this.servers.asObservable(); }
+}
 
 describe('ServerListComponent', () => {
   let component: ServerListComponent;
   let fixture: ComponentFixture<ServerListComponent>;
-  let service: ServersTestingService;
+  let service: ServersServiceStub;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-      ],
-      declarations: [
-        ServerItemComponent,
-        ServerListComponent,
-        ServerStatusBadgeComponent,
-        ServerConnectBadgeComponent,
-      ],
+      declarations: [ ServerListComponent ],
       providers: [
-        {
-          provide: ServersService,
-          useClass: ServersTestingService
-        }
-      ]
+        { provide: ServersService, useClass: ServersServiceStub }
+      ],
+      schemas: [ NO_ERRORS_SCHEMA ],
     })
     .compileComponents();
 
@@ -50,8 +44,15 @@ describe('ServerListComponent', () => {
     expect(fixture.debugElement.query(By.css('ul'))).toBe(null);
   });
 
+  it('should render all the servers', () => {
+    service.servers.next([ OfflineServer, OnlineServer ]);
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.queryAll(By.css('ando-server-item')).length).toBe(2);
+  });
+
   it('should show message if there are no servers', () => {
-    service.nextServers([]);
+    service.servers.next([]);
     fixture.detectChanges();
 
     const msg = fixture.debugElement.query(By.css('small')).nativeElement as HTMLElement;
