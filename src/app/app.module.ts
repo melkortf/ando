@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MarkdownModule } from 'ngx-markdown';
 import { NgProgressModule } from '@ngx-progressbar/core';
@@ -12,8 +11,8 @@ import { PagesModule } from './pages/pages.module';
 import { ServersModule } from './servers/servers.module';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
-import { ANNE_DOMAIN } from './anne-endpoints.service';
 import { CoreModule } from './core/core.module';
+import { ANNE_DOMAIN } from './anne-domain';
 
 @NgModule({
   declarations: [
