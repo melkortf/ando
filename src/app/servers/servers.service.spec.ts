@@ -1,42 +1,44 @@
-import { HttpClient } from '@angular/common/http';
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { ServersService } from './servers.service';
-import { AnneEndpointsService } from '../anne-endpoints.service';
-
-class MockServersService {
-  readonly servers = 'FAKE_SERVERS';
-}
+import { ANNE_DOMAIN } from '../anne-domain';
 
 describe('ServersService', () => {
-  let httpClient: HttpClient;
-  let httpTestingController: HttpTestingController;
+  let httpController: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
+        { provide: ANNE_DOMAIN, useValue: 'FAKE_HOST' },
         ServersService,
-        {
-          provide: AnneEndpointsService,
-          useClass: MockServersService
-        }
       ],
       imports: [HttpClientTestingModule]
     });
 
-    httpClient = TestBed.get(HttpClient);
-    httpTestingController = TestBed.get(HttpTestingController);
+    httpController = TestBed.get(HttpTestingController);
   });
 
   it('should be created', inject([ServersService], (service: ServersService) => {
     expect(service).toBeTruthy();
   }));
 
-  it('should query anne endpoint', inject([ServersService], (service: ServersService) => {
-    service.getServers().subscribe();
-    const req = httpTestingController.expectOne('FAKE_SERVERS');
-    expect(req.request.responseType).toEqual('json');
-    httpTestingController.verify();
-  }));
+  describe('#getServers()', () => {
+    it('should query anne endpoint', inject([ServersService], (service: ServersService) => {
+      service.getServers().subscribe();
+      const tr = httpController.expectOne('FAKE_HOST/servers');
+      expect(tr.request.method).toBe('GET');
+      httpController.verify();
+    }));
+
+    it('should handle errors', done => inject([ServersService], (service: ServersService) => {
+      service.getServers().subscribe(servers => {
+        expect(servers).toBeTruthy();
+        expect(servers.length).toBe(0);
+        done();
+      });
+
+      httpController.expectOne('FAKE_HOST/servers').error(new ErrorEvent('timeout'));
+    })());
+  });
 });
