@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { NgProgress } from '@ngx-progressbar/core';
 import { MarkdownModule } from 'ngx-markdown';
 import { Page } from '../models/page';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 
 class PagesServiceStub {
   fetchPage(_page: Page) { return of('FAKE_BODY'); }
@@ -64,13 +64,15 @@ describe('PageComponent', () => {
 
   describe('#set page()', () => {
     let mockPage: Page;
+    let pagesService: PagesService;
 
     beforeEach(() => {
       mockPage = { slug: 'FAKE_SLUG', source: 'FAKE_SOURCE' };
+      pagesService = TestBed.get(PagesService);
     });
 
     it('should call PagesService.fetchPage()', () => {
-      const spy = spyOn(TestBed.get(PagesService), 'fetchPage').and.callThrough();
+      const spy = spyOn(pagesService, 'fetchPage').and.callThrough();
       component.page = mockPage;
       expect(spy).toHaveBeenCalledWith(mockPage);
     });
@@ -86,5 +88,11 @@ describe('PageComponent', () => {
       tick();
       expect(completeSpy).toHaveBeenCalled();
     }));
+
+    it('should handle errors', () => {
+      spyOn(pagesService, 'fetchPage').and.returnValue(throwError('FAKE_ERROR'));
+      component.page = mockPage;
+      expect(component.error).toBe('FAKE_ERROR');
+    });
   });
 });
