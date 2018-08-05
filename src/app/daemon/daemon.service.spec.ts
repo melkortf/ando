@@ -40,5 +40,14 @@ describe('DaemonService', () => {
 
       httpController.expectOne('FAKE_HOST/daemon').flush(mockDaemon);
     })());
+
+    it('should handle errors', done => inject([DaemonService], (service: DaemonService) => {
+      service.getDaemon().subscribe(daemon => {
+        expect(daemon.version).toBe('unknown');
+        done();
+      });
+
+      httpController.expectOne('FAKE_HOST/daemon').error(new ErrorEvent('FAKE_ERROR'));
+    })());
   });
 });
