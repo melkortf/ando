@@ -20,7 +20,7 @@ export class ServerStatusBadgeComponent {
   ]);
 
   get state(): string {
-    return this.stateMap.get(this.server.state) || this.server.state;
+    return this.stateMap.get(this.server.state);
   }
 
 }
