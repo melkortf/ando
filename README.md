@@ -1,6 +1,8 @@
 # Ando
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/melkortf/ando.svg)](https://greenkeeper.io/) [![Build Status](https://travis-ci.org/melkortf/ando.svg?branch=master)](https://travis-ci.org/melkortf/ando)
+[![codecov](https://codecov.io/gh/melkortf/ando/branch/master/graph/badge.svg)](https://codecov.io/gh/melkortf/ando)
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
