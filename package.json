@@ -25,11 +25,11 @@
     "@ng-bootstrap/ng-bootstrap": "^4.0.0",
     "@ngx-progressbar/core": "^5.3.1",
     "core-js": "^2.6.1",
-    "ngx-markdown": "^6.3.0",
     "rxjs": "^6.3.3",
     "rxjs-tslint": "^0.1.6",
     "socket.io": "^2.2.0",
     "url-parse": "^1.4.4",
+    "ngx-markdown": "^7.0.0",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
