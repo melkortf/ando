@@ -12,9 +12,15 @@ class PagesServiceStub {
   fetchPage(_page: Page) { return of('FAKE_BODY'); }
 }
 
-class NgProgressStub {
+class NgProgressRef {
   start() { }
   complete() { }
+}
+
+const progressRef = new NgProgressRef();
+
+class NgProgressStub {
+  ref() { return progressRef; }
 }
 
 describe('PageComponent', () => {
@@ -62,6 +68,14 @@ describe('PageComponent', () => {
     expect(alert.classList.contains('alert-danger')).toBe(true);
   });
 
+  describe('#onInit()', () => {
+    it('should capture NgProgressRef', () => {
+      const spy = spyOn(TestBed.get(NgProgress), 'ref');
+      component.ngOnInit();
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+
   describe('#set page()', () => {
     let mockPage: Page;
     let pagesService: PagesService;
@@ -78,9 +92,8 @@ describe('PageComponent', () => {
     });
 
     it('should start & stop the progress ', fakeAsync(() => {
-      const progress = TestBed.get(NgProgress);
-      const startSpy = spyOn(progress, 'start');
-      const completeSpy = spyOn(progress, 'complete');
+      const startSpy = spyOn(progressRef, 'start');
+      const completeSpy = spyOn(progressRef, 'complete');
 
       component.page = mockPage;
       expect(startSpy).toHaveBeenCalled();
