@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { ReplaySubject, of } from 'rxjs';
 import { Server } from './models';
-import { ServerImpl } from './server-impl';
 import { ANNE_DOMAIN } from '../anne-domain';
 
 @Injectable({
@@ -19,10 +18,9 @@ export class ServersService {
   ) {
     this.http.get<Server[]>(`${this.domain}/servers`)
       .pipe(
-        map(servers => servers.map(s => new ServerImpl(`${this.domain}/servers`, s))),
         catchError(() => of([]))
       )
-      .subscribe(this.servers);
+      .subscribe(servers => this.servers.next(servers));
   }
 
   getServers() {

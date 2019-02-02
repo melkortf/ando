@@ -11,16 +11,4 @@ export class ServerStatusBadgeComponent {
   @Input()
   server: Server;
 
-  readonly stateMap = new Map([
-    [ 'Offline', 'offline' ],
-    [ 'Running', 'running' ],
-    [ 'Starting', 'starting' ],
-    [ 'ShuttingDown', 'shutting down' ],
-    [ 'Crashed', 'crashed' ]
-  ]);
-
-  get state(): string {
-    return this.stateMap.get(this.server.state);
-  }
-
 }

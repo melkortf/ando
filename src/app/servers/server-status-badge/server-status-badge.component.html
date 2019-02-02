@@ -1,12 +1,12 @@
 <span *ngIf="server"
   class="badge"
   [ngClass]="{
-    'badge-secondary': server.state === 'Offline',
-    'badge-success': server.state === 'Running',
-    'badge-light': server.state === 'Starting',
-    'badge-dark': server.state === 'ShuttingDown',
-    'badge-danger': server.state === 'Crashed'
+    'badge-secondary': server.state === 'offline',
+    'badge-success': server.state === 'running',
+    'badge-light': server.state === 'starting',
+    'badge-dark': server.state === 'shutting down',
+    'badge-danger': server.state === 'crashed'
   }"
 >
-  {{ state }}
+  {{ server.state }}
 </span>

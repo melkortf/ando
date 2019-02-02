@@ -16,11 +16,11 @@ export class DaemonService {
     private http: HttpClient,
     @Inject(ANNE_DOMAIN) private domain: string,
   ) {
-    this.http.get(`${this.domain}/daemon`)
+    this.http.get<Daemon>(`${this.domain}/daemon`)
       .pipe(
         catchError(() => of({ version: 'unknown' })),
       )
-      .subscribe(this.daemon);
+      .subscribe(daemon => this.daemon.next(daemon));
   }
 
   getDaemon() {

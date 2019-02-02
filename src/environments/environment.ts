@@ -7,7 +7,7 @@ export const environment = {
   production: false,
 
   // where the anne server is running
-  anneDomain: 'http://localhost:3000',
+  anneDomain: '/api',
 
   socialLinks: [
     {

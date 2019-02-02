@@ -2,11 +2,11 @@
   class="list-group-item d-flex justify-content-between align-items-center">
   <ul class="list-inline">
     <li class="list-inline-item">
-      {{ server.hostname ? server.hostname : server.name }}
+      {{ server.status ? server.status.hostname : server.name }}
     </li>
-    <li class="list-inline-item" *ngIf="server.state === 'Running'">
+    <li class="list-inline-item" *ngIf="server.status">
       <span class="server-status">
-        {{ server.map }} {{ server.playerCount }}/{{ server.maxPlayers }}
+        {{ server.status.map }} {{ server.status.playerCount }}/{{ server.status.maxPlayers }}
       </span>
     </li>
   </ul>
