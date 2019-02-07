@@ -51,7 +51,8 @@ describe('ServerConnectBadgeComponent', () => {
     });
 
     it('should return false for a server with no address', () => {
-      const server = { ...OnlineServer, address: '' };
+      const server = { ...OnlineServer };
+      server.status.address = '';
       component.server = server;
       expect(component.canConnect()).toBe(false);
 
