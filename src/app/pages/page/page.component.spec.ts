@@ -68,14 +68,6 @@ describe('PageComponent', () => {
     expect(alert.classList.contains('alert-danger')).toBe(true);
   });
 
-  describe('#onInit()', () => {
-    it('should capture NgProgressRef', () => {
-      const spy = spyOn(TestBed.get(NgProgress), 'ref');
-      component.ngOnInit();
-      expect(spy).toHaveBeenCalled();
-    });
-  });
-
   describe('#set page()', () => {
     let mockPage: Page;
     let pagesService: PagesService;
