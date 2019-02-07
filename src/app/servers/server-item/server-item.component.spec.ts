@@ -39,7 +39,7 @@ describe('ServerItemComponent', () => {
     fixture.detectChanges();
 
     const name = fixture.debugElement.query(By.css('li>ul>li:first-child')).nativeElement as HTMLElement;
-    expect(name.innerText).toMatch(OnlineServer.hostname);
+    expect(name.innerText).toMatch(OnlineServer.status.hostname);
   });
 
   it('should show server status', () => {
