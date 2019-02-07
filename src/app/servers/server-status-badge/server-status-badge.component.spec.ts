@@ -33,25 +33,25 @@ describe('ServerStatusBadgeComponent', () => {
     expect(stateElement.innerText).toBe('offline');
     expect(stateElement.classList.contains('badge-secondary')).toBe(true);
 
-    server.state = 'Starting';
+    server.state = 'starting';
     fixture.detectChanges();
 
     expect(stateElement.innerText).toBe('starting');
     expect(stateElement.classList.contains('badge-light')).toBe(true);
 
-    server.state = 'Running';
+    server.state = 'running';
     fixture.detectChanges();
 
     expect(stateElement.innerText).toBe('running');
     expect(stateElement.classList.contains('badge-success')).toBe(true);
 
-    server.state = 'ShuttingDown';
+    server.state = 'shutting down';
     fixture.detectChanges();
 
     expect(stateElement.innerText).toBe('shutting down');
     expect(stateElement.classList.contains('badge-dark')).toBe(true);
 
-    server.state = 'Crashed';
+    server.state = 'crashed';
     fixture.detectChanges();
 
     expect(stateElement.innerText).toBe('crashed');
