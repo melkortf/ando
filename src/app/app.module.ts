@@ -28,7 +28,7 @@ import { ANNE_DOMAIN } from './anne-domain';
     AppRoutingModule,
     NgbModule.forRoot(),
     MarkdownModule.forRoot(),
-    NgProgressModule.forRoot(),
+    NgProgressModule,
   ],
   providers: [
     {

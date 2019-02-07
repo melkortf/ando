@@ -8,7 +8,11 @@ import { NgProgress, NgProgressRef } from '@ngx-progressbar/core';
   templateUrl: './page.component.html',
   styleUrls: ['./page.component.css']
 })
-export class PageComponent implements OnInit {
+export class PageComponent {
+
+  private progressRef: NgProgressRef;
+  body?: string;
+  error?: string;
 
   @Input()
   set page(page: Page) {
@@ -21,16 +25,10 @@ export class PageComponent implements OnInit {
       );
   }
 
-  private progressRef: NgProgressRef;
-  body: string | undefined;
-  error: string | undefined;
-
   constructor(
     private pagesService: PagesService,
     private progress: NgProgress
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.progressRef = this.progress.ref();
   }
 
