@@ -2,7 +2,6 @@ import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ServersService } from './servers.service';
 import { ANNE_DOMAIN } from '../anne-domain';
-import { ServerImpl } from './server-impl';
 import { OnlineServer, OfflineServer } from './testing/servers';
 
 describe('ServersService', () => {
@@ -31,15 +30,6 @@ describe('ServersService', () => {
       expect(tr.request.method).toBe('GET');
       httpController.verify();
     }));
-
-    it('should return ServerImpl instances', done => inject([ServersService], (service: ServersService) => {
-      service.getServers().subscribe(servers => {
-        servers.forEach(s => expect(s instanceof ServerImpl).toBe(true));
-        done();
-      });
-
-      httpController.expectOne('FAKE_HOST/servers').flush([OnlineServer, OfflineServer]);
-    })());
 
     it('should handle errors', done => inject([ServersService], (service: ServersService) => {
       service.getServers().subscribe(servers => {
