@@ -29,7 +29,7 @@
     "rxjs-tslint": "^0.1.6",
     "socket.io": "^2.2.0",
     "url-parse": "^1.4.6",
-    "ngx-markdown": "^7.0.0",
+    "ngx-markdown": "^8.0.1",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
