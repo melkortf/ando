@@ -39,7 +39,7 @@
     "@angular/language-service": "^7.1.4",
     "@types/jasmine": "^3.3.12",
     "@types/jasminewd2": "^2.0.6",
-    "@types/node": "^12.0.0",
+    "@types/node": "^12.12.3",
     "@types/socket.io": "^1.4.40",
     "@types/socket.io-client": "^1.4.32",
     "@types/url-parse": "^1.4.1",
